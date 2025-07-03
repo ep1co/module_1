@@ -1,4 +1,3 @@
-//logic watering
 #include <stdio.h>
 #include <init.h>
 
