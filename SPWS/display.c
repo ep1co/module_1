@@ -1,4 +1,3 @@
-//in ket qua len terminal
 #include <init.h>
 
 extern int temperature;
