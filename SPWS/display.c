@@ -1,7 +1,24 @@
+//in ket qua len terminal
+/*
+thu tu show len man hinh:
+
+---------------------
+mode: AUTO
+temperature: 27 *C
+humidity: 70 %
+pump: ON 
+led: BLUE
+
+
+*/
+
 #include "init.h"
 
 
 int system_update();
+extern uint8_t temperature ;
+extern uint8_t moisture;
+extern config_t system_config;
 
 void show_temperature()
 {    
@@ -11,7 +28,7 @@ void show_temperature()
 
 void show_moisture()
 {
-    printf("Moisture: %d %%", moisture);
+    printf("Moisture: %d %%\n", moisture);
 }
 
 
@@ -41,6 +58,6 @@ void show_water_state()
 
 void show_mode()
 {
-    if(sys_mode == MODE_AUTO) printf("Mode: Auto");
-    else printf("Mode: Manual");
+    if(system_config.sys_mode == MODE_AUTO) printf("Mode: Auto\n");
+    else printf("Mode: Manual\n");
 }
