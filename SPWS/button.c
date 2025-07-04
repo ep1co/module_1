@@ -1,10 +1,3 @@
-/*
-co 2 loai nut: nut chuyen mode va nut tuoi
-mac dinh la mode AUTO
-an nut 1 -> doi mode thanh MANUAL
-an nut 2 -> tuoi nuoc
-*/
-
 #include "init.h"
 
 
