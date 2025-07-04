@@ -12,6 +12,8 @@ void init_mode_button();
 void init_pump_button();
 void init_default_config();
 int system_update();
+void show_water_state();
+void auto_pump();
 
 extern config_t system_config;
 
@@ -29,6 +31,11 @@ int main(void)
         show_moisture();
         system_update();
         display_led();
+        show_water_state();
+        if (system_config.sys_mode == MODE_AUTO) 
+        {
+            auto_pump();        
+        }
         press_button();
         sleep(system_config.sys_delay);
     }
