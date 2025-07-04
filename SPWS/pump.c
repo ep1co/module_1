@@ -1,6 +1,5 @@
 #include "init.h"
 
-extern uint8_t moisture;
 
 int system_update();
 
@@ -30,14 +29,15 @@ void auto_pump()
             turn_pump_off();
             break;
         
+        case SYS_LOW_MOISTURE_ALERT:
         case SYS_WATERING:
             printf("watering\n");
             sleep(system_config.pump_time);
-            while(sleep)
+            while((sleep(system_config.pump_time)))
             {
                 for(int i = 0; i < system_config.pump_time; i++)
                 {
-                    moisture++;
+                    moisture += 3;
                     system_update();
                     auto_pump();
                     sleep(1);
@@ -45,12 +45,8 @@ void auto_pump()
             }
             break;
         
-        case SYS_LOW_MOISTURE_ALERT:
-            printf("YELLOW\n");
-            break;
-        
         case SYS_ERROR:
-            printf("RED\n");
+            printf("Pump error\n");
             break;
 
         default:
