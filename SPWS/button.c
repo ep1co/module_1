@@ -1,25 +1,35 @@
-#include <init.h>
-
-extern uint8_t pump_mode;
-extern uint8_t sys_mode;
-
+#include "init.h"
 
 void init_button()
 {
-    if(mode_button_pressed) 
+    if (mode_button_pressed) 
     {
-        if(sys_mode == MODE_AUTO)
+        if (system_config.sys_mode == MODE_AUTO)
         {
-            sys_mode = MODE_MANUAL;
+            turn_pump_off();
+            system_config.sys_mode = MODE_MANUAL;
+            printf("Manual mode enabled.\n");
         }
-        else sys_mode = MODE_AUTO;
+        else
+        {
+            system_config.sys_mode = MODE_AUTO;
+            printf("Auto mode enabled.\n");
+            printf("Press any key to water.\n");
+        }
     }
-    if(pump_button_pressed)
+
+    if (pump_button_pressed)
     {
-        if(pump_mode == PUMP_OFF)
+        if (system_config.pump == PUMP_OFF)
         {
-            pump_mode = PUMP_ON;
+            system_config.pump = PUMP_ON;
+            printf("Watering...\n");
+            sleep(10);
         }
-        else pump_mode = PUMP_OFF;
+        else 
+        {
+            system_config.pump = PUMP_OFF;
+            printf("Pump turned off.\n");
+        }
     }
 }
