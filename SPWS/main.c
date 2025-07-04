@@ -1,25 +1,26 @@
 #include "init.h"
 
+void show_mode();
 void show_temperature();
 void show_moisture();
-void init_button();
 void led_update();
+void press_button();
+void display_led();
 
-int main()
+void main(void)
 {
     printf("Starting...\n");
     while (1)
     {
         printf("---------------------\n");
-        //update_temperature();
+        show_mode();
         show_temperature();
-
-        //update_humidity();
         show_moisture();
+        display_led();
+        press_button();
         sleep(system_config.sys_delay);
     }
 
     printf("Shutting down.\n");
-
 }
 
