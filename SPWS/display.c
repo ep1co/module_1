@@ -1,7 +1,5 @@
 #include "init.h"
 
-extern uint8_t temperature;
-extern uint8_t moisture;
 
 int system_update();
 
@@ -22,7 +20,6 @@ void show_water_state()
     switch (system_update())
     {
         case SYS_NORMAL:
-            printf("Moisture is ideal, no need to water\n");
             break;
     
         case SYS_WATERING:
@@ -40,4 +37,10 @@ void show_water_state()
         default:
             break;
     }
+}
+
+void show_mode()
+{
+    if(sys_mode == MODE_AUTO) printf("Mode: Auto");
+    else printf("Mode: Manual");
 }
