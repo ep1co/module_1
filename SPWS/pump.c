@@ -4,20 +4,20 @@ extern uint8_t moisture;
 
 int system_update();
 
-void turn_pump_on()
+int turn_pump_on()
 {
     if(system_config.pump == PUMP_OFF)
     {
-        system_config.pump = PUMP_ON; 
+        return system_config.pump = PUMP_ON; 
     }
     sleep(system_config.pump_time);
 }
 
-void turn_pump_off()
+int turn_pump_off()
 {
     if(system_config.pump == PUMP_ON)
     {
-        system_config.pump = PUMP_OFF; 
+        return system_config.pump = PUMP_OFF; 
     }
 }
 
