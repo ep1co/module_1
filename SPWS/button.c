@@ -1,8 +1,19 @@
+/*
+co 2 loai nut: nut chuyen mode va nut tuoi
+mac dinh la mode AUTO
+an nut 1 -> doi mode thanh MANUAL
+an nut 2 -> tuoi nuoc
+*/
+
 #include "init.h"
+
 
 void auto_pump();
 void turn_pump_off();
 
+extern uint8_t mode_button_pressed;
+extern uint8_t pump_button_pressed;
+extern config_t system_config;
 
 void init_mode_button()
 {
@@ -14,7 +25,6 @@ void init_mode_button()
             system_config.sys_mode = MODE_MANUAL;
             printf("Manual mode enabled.\n");
             printf("Press 'W' to water.\n");
-            press_button();
         }
         else
         {
