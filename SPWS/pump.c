@@ -5,53 +5,46 @@ extern uint8_t moisture;
 
 int system_update();
 
-int turn_pump_on()
+void turn_pump_on()
 {
     if(system_config.pump == PUMP_OFF)
     {
-        return system_config.pump = PUMP_ON; 
+        system_config.pump = PUMP_ON; 
     }
-    sleep(system_config.pump_time);
 }
 
-int turn_pump_off()
+void turn_pump_off()
 {
     if(system_config.pump == PUMP_ON)
     {
-        return system_config.pump = PUMP_OFF; 
+        system_config.pump = PUMP_OFF; 
     }
 }
 
 void auto_pump()
 {
-    switch ((system_update()))
+    if (moisture < system_config.min_moisture_threshold)
     {
-        case SYS_NORMAL:
-            printf("humidity is ideal, no need to water\n");
-            turn_pump_off();
-            break;
-        
-        case SYS_LOW_MOISTURE_ALERT:
-        case SYS_WATERING:
-            printf("watering\n");
-            sleep(system_config.pump_time);
-            while((sleep(system_config.pump_time)))
-            {
-                for(int i = 0; i < system_config.pump_time; i++)
-                {
-                    moisture += 3;
-                    system_update();
-                    auto_pump();
-                    sleep(1);
-                }
-            }
-            break;
-        
-        case SYS_ERROR:
-            printf("Pump error\n");
-            break;
+        printf("Moisture too low, starting watering...\n");
+        turn_pump_on();
 
-        default:
-            break;
+        for (int i = 0; i < system_config.pump_time; i++)
+        {
+            sleep(1);
+            moisture += 3;
+            printf("Moisture: %d%%\n", moisture);
+
+            if (moisture >= system_config.max_moisture_threshold)
+                break;
+        }
+
+        turn_pump_off();
+        printf("Watering done. Pump off.\n");
+    }
+    else
+    {
+        printf("Humidity is ideal, no need to water.\n");
+        turn_pump_off();
     }
 }
+
