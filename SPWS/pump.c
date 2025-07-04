@@ -46,12 +46,6 @@ void auto_pump()
                 }
             }
             break;
-        /*
-        case SYS_LOW_MOISTURE_ALERT:
-            system_update() = SYS_WATERING;
-            printf("\n");
-            break;
-        */
         
         case SYS_ERROR:
             printf("Pump error\n");
