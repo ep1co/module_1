@@ -1,25 +1,43 @@
-#include <init.h>
+#include "init.h"
 
-extern int temperature;
+extern uint8_t temperature;
+extern uint8_t moisture;
+
+int system_update();
 
 void show_temperature()
 {    
-    printf("Temp: %d\n", temperature);
+    printf("Temp: %d *C\n", temperature);
 }
 
-void show_humidity()
-{
-    extern int humidity;
-    if(humidity >= MIN_HUMID)
-    {
-        printf("humidity is ideal, no need to water\n");
-        turn_pump_off();
 
-    }
-    else
+void show_moisture()
+{
+    printf("Moisture: %d %%", moisture);
+}
+
+
+void show_water_state()
+{
+    switch (system_update())
     {
-        printf("watering...\n");
-        turn_pump_on();
+        case SYS_NORMAL:
+            printf("Moisture is ideal, no need to water\n");
+            break;
+    
+        case SYS_WATERING:
+            printf("Watering...\n");
+            break;
+        
+        case SYS_LOW_MOISTURE_ALERT:
+            printf("Low moisture\n");
+            break;
+        
+        case SYS_ERROR:
+            printf("Error\n");
+            break;
+
+        default:
+            break;
     }
-    printf("Humid: %d", humidity);
 }
