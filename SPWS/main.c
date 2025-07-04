@@ -1,31 +1,25 @@
-#include <init.h>
+#include "init.h"
 
-void update_temperature();
 void show_temperature();
-void update_humidity();
-void show_humidity();
-
-typedef struct
-{
-    MODE_MANUAL,
-    PUMP_OFF 
-} default_state;
+void show_moisture();
+void init_button();
+void led_update();
 
 int main()
 {
     printf("Starting...\n");
-    for(int index = 0; index < 10; index++)
+    while (1)
     {
         printf("---------------------\n");
-        update_temperature();
+        //update_temperature();
         show_temperature();
 
-        update_humidity();
-        show_humidity();
-
-        delay_ms(1000);
-        printf("---------------------\n");
+        //update_humidity();
+        show_moisture();
+        sleep(system_config.sys_delay);
     }
+
     printf("Shutting down.\n");
+
 }
 
