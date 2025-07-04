@@ -1,17 +1,3 @@
-//in ket qua len terminal
-/*
-thu tu show len man hinh:
-
----------------------
-mode: AUTO
-temperature: 27 *C
-humidity: 70 %
-pump: ON 
-led: BLUE
-
-
-*/
-
 #include "init.h"
 
 
