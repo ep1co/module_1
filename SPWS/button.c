@@ -10,14 +10,14 @@ extern config_t system_config;
 
 void init_mode_button()
 {
-    if (mode_button_pressed) 
+    if (mode_button_pressed == 1) 
     {
         if (system_config.sys_mode == MODE_AUTO)
         {
             turn_pump_off();
             system_config.sys_mode = MODE_MANUAL;
             printf("Manual mode enabled.\n");
-            printf("Press 'W' to water.\n");
+            printf("Press 'p' to water.\n");
         }
         else
         {
@@ -30,7 +30,7 @@ void init_mode_button()
 
 void init_pump_button()
 {
-    if (pump_button_pressed)
+    if (pump_button_pressed == 1)
     {
         if (system_config.pump == PUMP_OFF)
         {
@@ -49,12 +49,17 @@ void init_pump_button()
 void press_button()
 {
     char ch = getchar();
-    while (ch != '\n')
+    if (ch == 'p') 
     {
-        if (ch == 'w') system_config.pump = PUMP_ON;
-        else if (ch == 'p') init_mode_button();
-        else if (ch == 'm') init_pump_button();
+        mode_button_pressed = 1;
+        init_mode_button();
     }
+    else if (ch == 'm')
+    {
+        pump_button_pressed = 1;
+        init_pump_button();
+    } 
+    while (ch != '\n');
 }
 
     
