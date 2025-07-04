@@ -1,42 +1,30 @@
-#include <init.h>
+#include "init.h"
 
-extern uint32_t led_state;
-extern uint16_t humidity;
 
-void led_update()
+//extern uint32_t led_state;
+extern uint8_t moisture;
+
+int system_update();
+
+void display_led()
 {
-    if(turn_pump_off() && humidity >= MIN_HUMID)
+    switch (system_update())
     {
-        led_state = LED_NORMAL;
-    }
-    else if(turn_pump_on())
-    {
-        led_state = LED_WATERING;
-    }
-    else if(humidity < MIN_HUMID)
-    {
-        led_state = LED_LOW_MOISTURE_ALERT;
-    }
-    else
-    {
-        led_state = LED_ERROR;
-    }
-
-    switch (led_state)
-    {
-    case LED_NORMAL:
+    case SYS_NORMAL:
         printf("GREEN\n");
         break;
     
-    case LED_WATERING:
+    case SYS_WATERING:
         printf("BLUE\n");
+        system_update();
+        display_led();
         break;
     
-    case LED_LOW_MOISTURE_ALERT:
+    case SYS_LOW_MOISTURE_ALERT:
         printf("YELLOW\n");
         break;
     
-    case LED_ERROR:
+    case SYS_ERROR:
         printf("RED\n");
         break;
 
