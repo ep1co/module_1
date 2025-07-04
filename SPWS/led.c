@@ -1,13 +1,11 @@
 #include "init.h"
 
 
-//extern uint32_t led_state;
-extern uint8_t moisture;
-
 int system_update();
 
 void display_led()
 {
+    printf("Led color: "); 
     switch (system_update())
     {
     case SYS_NORMAL:
@@ -16,8 +14,6 @@ void display_led()
     
     case SYS_WATERING:
         printf("BLUE\n");
-        system_update();
-        display_led();
         break;
     
     case SYS_LOW_MOISTURE_ALERT:
