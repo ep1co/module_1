@@ -6,18 +6,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-uint8_t     mode_button_pressed     = 0;
-uint8_t     pump_button_pressed     = 0; 
-uint8_t     temperature;
-uint8_t     moisture;
-
-
 typedef enum
 {
     MODE_AUTO   = 1,
     MODE_MANUAL = 0 
 } system_mode;
-system_mode sys_mode;
 
 typedef enum
 {
@@ -42,17 +35,5 @@ typedef struct
     system_mode sys_mode;
     pump_state pump;
 } config_t;
-config_t system_config;
-
-void init_default_config()
-{
-    system_config.max_moisture_threshold = 80;
-    system_config.min_moisture_threshold = 50;
-    system_config.pump_time    = 10;
-    system_config.sys_delay    = 5;
-    system_config.sys_mode  = MODE_AUTO;
-    system_config.pump = PUMP_OFF;
-}
-
 
 #endif
