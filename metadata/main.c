@@ -1,6 +1,5 @@
 // include header files
 #include "filestat.h"
-#include "swc_2.h"
 
 // local constants
 
