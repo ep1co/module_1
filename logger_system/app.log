@@ -1,0 +1,2 @@
+[2025-08-13 23:36:25] [INFO] [App/main.c:15] This is an info message.
+[2025-08-13 23:36:25] [ERROR] [App/main.c:16] An error occurred: connection failed
