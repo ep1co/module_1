@@ -1,7 +1,7 @@
 // include header files
 //#include "DHT22.h"
 #include "Test_Service.h"
-
+#include "DHT22.h"
 
 
 
@@ -30,19 +30,16 @@ int main(void)
     float temp, humi;
     printf("Insert desired temperature and humid, separated by space: ");
     scanf("%f %f", &temp, &humi);
-    // printf("Type file name to save data: ");
-    // char fileName[name_size];
-    // scanf("%29s", fileName);
-    printf("flag...\n");
-    Create_Data_Test("sdf.txt", temp, humi);
-    Create_Data_Test("data.txt", 36, 63.4);
-    //printf("Data written to %29s successfully\n", fileName);
-    DHT_Init("sdf.txt");
-    if(DHT_Read_Temperature(*temp))
+    printf("Type file name to save data: ");
+    char fileName[name_size];
+    scanf("%29s", fileName);
+    Create_Data_Test(fileName, temp, humi);
+    DHT_Init(fileName);
+    if(DHT_Read_Temperature(&temp))
     {
         printf("Temperature: %.1f\n", temp);
     }
-    if(DHT_Read_Humidity(*humi))
+    if(DHT_Read_Humidity(&humi))
     {
         printf("Humidity: %.1f\n", humi);
     }
