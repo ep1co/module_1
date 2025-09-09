@@ -38,11 +38,11 @@ int main(void)
     Create_Data_Test("data.txt", 36, 63.4);
     //printf("Data written to %29s successfully\n", fileName);
     DHT_Init("sdf.txt");
-    if(DHT_Read_Temperature(temp))
+    if(DHT_Read_Temperature(*temp))
     {
         printf("Temperature: %.1f\n", temp);
     }
-    if(DHT_Read_Humidity(humi))
+    if(DHT_Read_Humidity(*humi))
     {
         printf("Humidity: %.1f\n", humi);
     }
