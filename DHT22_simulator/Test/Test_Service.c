@@ -1,19 +1,5 @@
-// include header files
 #include "Test_Service.h"
 
-// local constants
-
-
-// local data type
-
-
-// local variables
-
-
-// local function prototype
-
-
-// global function definition
 /*
 generate 5 byte: 2 byte temp, 2 for humid, 1 for checksum
 1 byte checksum = sum of 4 bytes, both temp and humid
@@ -41,19 +27,16 @@ void Create_Data_Test(const char *filename, float temp, float humidity)
 
     printf("Inserting start bits...\n");
 
-    // 4. Ghi từng bit của temp (16 bit)
     for (int i = (temp_data_length - 1); i >= 0; i--) {
         uint8_t bit = (temp_bin >> i) & 1;
         dprintf(fd, "%d\n", bit);
     }
 
-    // 5. Ghi từng bit của humid (16 bit)
     for (int i = (humid_data_length - 1); i >= 0; i--) {
         uint8_t bit = (humid_bin >> i) & 1;
         dprintf(fd, "%d\n", bit);
     }
 
-    // 6. Ghi từng bit của checksum (8 bit)
     for (int i = (checksum_data_length - 1); i >= 0; i--) {
         uint8_t bit = (checksum >> i) & 1;
         dprintf(fd, "%d\n", bit);
