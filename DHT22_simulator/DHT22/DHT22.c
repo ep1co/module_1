@@ -1,24 +1,13 @@
-// include header files
 #include "DHT22.h"
 #include "Test_Service.h"
 
-// local constants
 
 
-//local data type
-
-
-// local variables
-
-
-// local function prototype
-
-
-// global function definition
 /*
 2 read-bit functions gather bits into bytes and turn into decimal
 return false if unable to open the file
 */
+
 
 /*open exist file*/
 FILE *fd_r = NULL;
