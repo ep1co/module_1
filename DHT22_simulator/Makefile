@@ -6,7 +6,7 @@ SRC_DIR = .
 
 # Thư mục chứa các file .c của các component
 # Học viên chỉ cần thêm tên thư mục component mới vào danh sách này
-COMPONENTS = DHT22 Test_Service
+COMPONENTS = DHT22 Test
 
 # Thư mục App chứa main.c
 APP_DIR = App
