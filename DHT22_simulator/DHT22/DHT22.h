@@ -3,8 +3,6 @@
 
 
 
-
-// include header files
 #include <stdio.h>
 #include <stdbool.h>
 #include <unistd.h>
@@ -12,17 +10,8 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-// Constant
 
-
-//  Data type
-
-
-// Function prototype
-// bool DHT_Init();
-// bool DHT_Read_Temperature();
-// bool DHT_Read_Humidity();
-
+extern FILE *fd_r;
 
 
 
